@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plant Health Monitoring System - Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Roboto", sans-serif;
+        background: linear-gradient(135deg, #e0ffe6 0%, #b3e6ff 100%);
+        min-height: 100vh;
+        color: #222;
+      }
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        padding: 48px 36px 36px 36px;
+        animation: fadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      h1 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.8rem;
+        margin-bottom: 0.5rem;
+        color: #1a7f4f;
+        letter-spacing: 1px;
+      }
+      h2 {
+        color: #1a7f4f;
+        margin-top: 2.5rem;
+        font-size: 2rem;
+        font-family: "Montserrat", sans-serif;
+      }
+      .subtitle {
+        font-size: 1.3rem;
+        color: #555;
+        margin-bottom: 2.5rem;
+      }
+      .sensor-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin: 1.5rem 0 2.5rem 0;
+      }
+      .sensor {
+        background: linear-gradient(120deg, #e0ffe6 60%, #b3e6ff 100%);
+        border-radius: 12px;
+        padding: 18px 24px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #1a7f4f;
+        box-shadow: 0 2px 8px rgba(26, 127, 79, 0.07);
+        transition: transform 0.2s;
+      }
+      .sensor:hover {
+        transform: scale(1.05);
+        background: linear-gradient(120deg, #b3e6ff 60%, #e0ffe6 100%);
+      }
+      .api-section {
+        background: #f6fafd;
+        border-radius: 14px;
+        padding: 24px 28px;
+        margin: 2rem 0;
+        box-shadow: 0 2px 8px rgba(26, 127, 79, 0.05);
+      }
+      code,
+      pre {
+        background: #e8f5e9;
+        color: #1a7f4f;
+        border-radius: 6px;
+        padding: 2px 6px;
+        font-size: 1rem;
+      }
+      .docs-link {
+        display: inline-block;
+        margin-top: 2.5rem;
+        padding: 14px 32px;
+        background: linear-gradient(90deg, #1a7f4f 60%, #1e90ff 100%);
+        color: #fff;
+        font-size: 1.2rem;
+        font-family: "Montserrat", sans-serif;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        box-shadow: 0 2px 8px rgba(26, 127, 79, 0.12);
+        transition: background 0.2s, transform 0.2s;
+      }
+      .docs-link:hover {
+        background: linear-gradient(90deg, #1e90ff 60%, #1a7f4f 100%);
+        transform: translateY(-2px) scale(1.04);
+      }
+      @media (max-width: 600px) {
+        .container {
+          padding: 18px 6px;
+        }
+        h1 {
+          font-size: 2rem;
+        }
+        h2 {
+          font-size: 1.3rem;
+        }
+        .sensor-list {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🌱 Plant Health Monitoring System</h1>
+      <div class="subtitle">
+        The ultimate solution for real-time plant and soil health tracking,
+        designed for modern smart farms and research.
+      </div>
+
+      <h2>🌟 Overview</h2>
+      <p>
+        This system collects, stores, and analyzes data from a wide range of
+        sensors to help you monitor and optimize plant health. Easily integrate
+        with your hardware and access your data through a simple, powerful API.
+      </p>
+
+      <h2>🛠️ Supported Sensors</h2>
+      <div class="sensor-list">
+        <div class="sensor">pH</div>
+        <div class="sensor">Humidity</div>
+        <div class="sensor">Temperature</div>
+        <div class="sensor">UV</div>
+        <div class="sensor">Nitrogen (N)</div>
+        <div class="sensor">Phosphorus (P)</div>
+        <div class="sensor">Potassium (K)</div>
+        <div class="sensor">Water Level</div>
+        <div class="sensor">CO₂</div>
+        <div class="sensor">Soil Moisture</div>
+        <div class="sensor">Light Intensity</div>
+        <div class="sensor">EC (Electrical Conductivity)</div>
+        <div class="sensor">Rainfall</div>
+        <div class="sensor">Wind Speed</div>
+        <div class="sensor">Leaf Wetness</div>
+      </div>
+
+      <h2>🚀 Quick Start API</h2>
+      <div class="api-section">
+        <b>POST <code>/api/sensor-data</code></b
+        ><br />
+        <span>Send sensor data (JSON):</span>
+        <pre>
+{
+  "ph": 6.8,
+  "humidity": 60,
+  "temperature": 23.5,
+  "uv": 2.9,
+  "nitrogen": 18,
+  "phosphorus": 12,
+  "potassium": 25,
+  "waterLevel": 75,
+  "co2": 410,
+  "soilMoisture": 50,
+  "lightIntensity": 1100,
+  "ec": 1.2,
+  "rainfall": 0,
+  "windSpeed": 3,
+  "leafWetness": 8
+}</pre
+        >
+        <br />
+        <b>GET <code>/api/sensor-data</code></b
+        ><br />
+        <span>Retrieve all stored sensor data.</span>
+      </div>
+
+      <a class="docs-link" href="/main-docs">📖 Full Documentation</a>
+    </div>
+  </body>
+</html>

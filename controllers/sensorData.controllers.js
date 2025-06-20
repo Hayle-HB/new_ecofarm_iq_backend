@@ -62,7 +62,7 @@ exports.addSensorData = (req, res) => {
   sensorDataService.writeSensorData(data);
   res
     .status(201)
-    .json({ message: "Sensor data added successfully.", data: newEntry });
+    .send("Sensor data added successfully.");
 };
 
 // Controller to get all sensor data
