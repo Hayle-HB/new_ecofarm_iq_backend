@@ -8,6 +8,10 @@ app.use(express.json());
 const sensorDataRoutes = require("./routes/sensorData.routes");
 app.use("/api", sensorDataRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
