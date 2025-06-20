@@ -67,6 +67,12 @@ app.post("/api/test", (req, res) => {
   res.status(200).send(`It works you send a value ${req.body}`);
 });
 
+app.get("/api/test", (req, res) => {
+  res
+    .status(200)
+    .send("Definitly We will go to GANA, no one will go except Us");
+});
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
