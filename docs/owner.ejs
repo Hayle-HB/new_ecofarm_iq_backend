@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Owner - Send Message</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f4f8fb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background: #fff;
+        padding: 2.5rem 2rem 2rem 2rem;
+        border-radius: 14px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        min-width: 320px;
+      }
+      h2 {
+        margin-bottom: 1.2rem;
+        color: #1a7f4f;
+        font-size: 1.5rem;
+      }
+      form {
+        display: flex;
+        gap: 0.5rem;
+      }
+      input[type="text"] {
+        flex: 1;
+        padding: 0.6rem 0.8rem;
+        border: 1px solid #b3e6ff;
+        border-radius: 6px;
+        font-size: 1rem;
+      }
+      button {
+        background: linear-gradient(90deg, #1a7f4f 60%, #1e90ff 100%);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background: linear-gradient(90deg, #1e90ff 60%, #1a7f4f 100%);
+      }
+      .status {
+        margin-top: 1rem;
+        font-size: 1rem;
+        color: #1a7f4f;
+        min-height: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Send a New Message</h2>
+      <form id="sendForm" autocomplete="off">
+        <input
+          type="text"
+          id="message"
+          name="message"
+          placeholder="Type your message..."
+          required
+        />
+        <button type="submit">Send</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+    <script>
+      document
+        .getElementById("sendForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const msg = document.getElementById("message").value.trim();
+          if (!msg) return;
+          const statusDiv = document.getElementById("status");
+          try {
+            const res = await fetch("/send", {
+              method: "POST",
+              headers: { "Content-Type": "text/plain" },
+              body: msg,
+            });
+            if (res.ok) {
+              statusDiv.textContent = "Message sent!";
+              document.getElementById("message").value = "";
+            } else {
+              statusDiv.textContent = "Failed to send message.";
+            }
+          } catch {
+            statusDiv.textContent = "Error sending message.";
+          }
+          setTimeout(() => {
+            statusDiv.textContent = "";
+          }, 2000);
+        });
+    </script>
+  </body>
+</html>

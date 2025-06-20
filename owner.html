@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Send New Letter</h2>
+<form id="newsForm">
+  <input type="text" id="message" placeholder="Enter news" required/>
+  <button type="submit">Send</button>
+</form>
+<script>
+  document.getElementById("newsForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const msg = document.getElementById("message").value;
+    await fetch("/send", {
+      method: "POST",
+      headers: {"Content-Type": "text/plain"},
+      body: msg
+    });
+    alert("Sent!");
+    document.getElementById("message").value = '';
+  });
+</script>
+</body>
+</html>

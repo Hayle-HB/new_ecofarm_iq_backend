@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Live Messages</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f4f8fb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background: #fff;
+        padding: 2.5rem 2rem 2rem 2rem;
+        border-radius: 14px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        min-width: 320px;
+        min-height: 320px;
+      }
+      h2 {
+        margin-bottom: 1.2rem;
+        color: #1a7f4f;
+        font-size: 1.5rem;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        background: #e0ffe6;
+        margin-bottom: 0.7rem;
+        padding: 0.7rem 1rem;
+        border-radius: 8px;
+        font-size: 1.08rem;
+        color: #222;
+        box-shadow: 0 1px 4px rgba(26, 127, 79, 0.07);
+        word-break: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Live Messages</h2>
+      <ul id="messages"></ul>
+    </div>
+    <script>
+      const evtSource = new EventSource("/events");
+      evtSource.onmessage = (event) => {
+        const ul = document.getElementById("messages");
+        const li = document.createElement("li");
+        li.textContent = event.data;
+        ul.appendChild(li);
+        ul.scrollTop = ul.scrollHeight;
+      };
+    </script>
+  </body>
+</html>
